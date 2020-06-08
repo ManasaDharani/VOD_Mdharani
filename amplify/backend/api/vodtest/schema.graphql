@@ -1,0 +1,16 @@
+type Video @model {
+  id: ID!
+  title: String!
+  genre: String!
+  hlsUrl: String
+  thumbNailsUrls:[String]
+  mp4Urls:[String]
+  sub: String
+}
+
+type User @model {
+  id: ID!
+  name: String!
+  location: String
+  pictureUrl: String
+}

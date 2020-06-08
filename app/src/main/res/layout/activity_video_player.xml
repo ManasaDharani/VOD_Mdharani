@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VideoPlayerActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="0dp">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:show_buffering="when_playing" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_margin="15dp">
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:id="@+id/btn_download"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_file_download_gray_24dp"
+                android:text="Download"
+                android:textColor="#a9a9a9"
+                android:foreground="?attr/selectableItemBackground"
+                android:textSize="10sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_title"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="15dp"
+            android:text="Title"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_genre"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="15dp"
+            android:text="Genre"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_margin="15dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:id="@+id/userInfoLayout">
+
+            <ImageView
+                android:id="@+id/profilePictureDisplay"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                tools:srcCompat="@tools:sample/avatars" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_displayName"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginStart="15dp"
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_displayLocation"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginStart="15dp"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-vodtest-dev-124526-authRole",
+            "UnauthRoleArn": "arn:aws:iam::427025378311:role/amplify-vodtest-dev-124526-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::427025378311:role/amplify-vodtest-dev-124526-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-vodtest-dev-124526-deployment",
+            "UnauthRoleName": "amplify-vodtest-dev-124526-unauthRole",
+            "StackName": "amplify-vodtest-dev-124526",
+            "StackId": "arn:aws:cloudformation:us-east-1:427025378311:stack/amplify-vodtest-dev-124526/78796770-a4f0-11ea-a29d-12b44143da02",
+            "AmplifyAppId": "d1dq2iub2nn5nj"
+        },
+        "categories": {
+            "auth": {
+                "vodtest49701923": {}
+            }
+        }
+    }
+}

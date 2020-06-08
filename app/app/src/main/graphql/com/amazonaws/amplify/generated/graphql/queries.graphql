@@ -1,0 +1,61 @@
+# this is an auto generated file. This will be overwritten
+query GetVideo($id: ID!) {
+  getVideo(id: $id) {
+    id
+    title
+    genre
+    hlsUrl
+    thumbNailsUrls
+    mp4Urls
+    sub
+    createdAt
+    updatedAt
+  }
+}
+query ListVideos(
+  $filter: ModelVideoFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listVideos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      genre
+      hlsUrl
+      thumbNailsUrls
+      mp4Urls
+      sub
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    name
+    location
+    pictureUrl
+    createdAt
+    updatedAt
+  }
+}
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      location
+      pictureUrl
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
