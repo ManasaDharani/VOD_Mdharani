@@ -12,13 +12,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.amazonaws.amplify.generated.graphql.GetUserQuery;
+import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.appsync.fetcher.AppSyncResponseFetchers;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.apollographql.apollo.GraphQLCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
@@ -83,7 +86,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 if(getSupportActionBar() != null){
                     getSupportActionBar().show();
                 }
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) playerView.getLayoutParams();
                 params.width = params.MATCH_PARENT;
                 params.height = (int) ( 200 * getApplicationContext().getResources().getDisplayMetrics().density);
@@ -97,7 +100,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 if(getSupportActionBar() != null){
                     getSupportActionBar().hide();
                 }
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) playerView.getLayoutParams();
                 params.width = params.MATCH_PARENT;
                 params.height = params.MATCH_PARENT;
@@ -130,8 +133,10 @@ public class VideoPlayerActivity extends AppCompatActivity {
         String title = extras.getString("EXTRA_TITLE");
         Thread downloadThread = new Thread(() -> {
             try {
+                CognitoUserPool userpool = new CognitoUserPool(VideoPlayerActivity.this, new AWSConfiguration(VideoPlayerActivity.this));
+                String username = userpool.getCurrentUser().getUserId();
                 URL url = new URL(mp4Url);
-                String path = this.getFilesDir().getPath()+"/"+title+".mp4";
+                String path = this.getFilesDir().getPath()+"/"+username+"_"+title+".mp4";
                 FileUtils.copyURLToFile(url, new File(path));
             } catch (Exception e) {
                 e.printStackTrace();

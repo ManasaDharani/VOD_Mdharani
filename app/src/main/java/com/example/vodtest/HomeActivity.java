@@ -1,29 +1,54 @@
 package com.example.vodtest;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.PopupMenu;
 
 import com.amazonaws.amplify.generated.graphql.ListVideosQuery;
 import com.amazonaws.mobileconnectors.appsync.fetcher.AppSyncResponseFetchers;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
+import com.amplifyframework.storage.StorageItem;
 import com.apollographql.apollo.GraphQLCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Nonnull;
 
@@ -89,8 +114,30 @@ public class HomeActivity extends AppCompatActivity{
                 }
             });
             popup.show();
-//            Intent uploadIntent = new Intent(HomeActivity.this, UploadVideoActivity.class);
-//            HomeActivity.this.startActivity(uploadIntent);
+//            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//            String NOTIFICATION_CHANNEL_ID = "tutorialspoint_01";
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+//                // Configure the notification channel.
+//                notificationChannel.setDescription("Sample Channel description");
+//                notificationChannel.enableLights(true);
+//                notificationChannel.setLightColor(Color.RED);
+//                notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+//                notificationChannel.enableVibration(true);
+//                notificationManager.createNotificationChannel(notificationChannel);
+//            }
+//            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+//            notificationBuilder.setAutoCancel(true)
+//                    .setDefaults(Notification.DEFAULT_ALL)
+//                    .setWhen(System.currentTimeMillis())
+//                    .setSmallIcon(R.mipmap.ic_launcher)
+//                    .setTicker("Tutorialspoint")
+//                    //.setPriority(Notification.PRIORITY_MAX)
+//                    .setContentTitle("sample notification")
+//                    .setContentText("This is sample notification")
+//                    .setContentInfo("Information");
+//            notificationManager.notify(1, notificationBuilder.build());
+
         });
 
         final SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefresh);

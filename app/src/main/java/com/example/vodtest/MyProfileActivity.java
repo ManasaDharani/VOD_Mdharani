@@ -80,6 +80,8 @@ public class MyProfileActivity extends AppCompatActivity {
                 startActivity(downloadsIntent);
             }
             if(items[position] == "Live Streams"){
+                Intent intent = getIntent();
+                Bundle extras = intent.getExtras();
                 Intent downloadsIntent = new Intent(MyProfileActivity.this, LiveStreams.class);
                 startActivity(downloadsIntent);
             }
@@ -156,22 +158,24 @@ public class MyProfileActivity extends AppCompatActivity {
                 ImageView profileImage = findViewById(R.id.profilePicture);
                 TextView nameText = findViewById(R.id.textName);
                 TextView locationText = findViewById(R.id.textLocation);
-                name = response.data().getUser().name();
+                name = "Temp";
                 nameText.setText(name);
-
-                if (response.data().getUser().pictureUrl() != null) {
-                    String picUrl = response.data().getUser().pictureUrl();
-                    Picasso.get().load(picUrl).into(profileImage);
-                } else {
-                    Picasso.get().load("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png").into(profileImage);
-                }
-                if (response.data().getUser().location() != null) {
-                    location = response.data().getUser().location();
-                    locationText.setText(location);
-                } else {
-                    String locationStr = "Location not specified";
-                    locationText.setText(locationStr);
-                }
+                Picasso.get().load("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png").into(profileImage);
+                String locationStr = "Location not specified";
+                locationText.setText(locationStr);
+//                if (response.data().getUser().pictureUrl() != null) {
+//                    String picUrl = response.data().getUser().pictureUrl();
+//                    Picasso.get().load(picUrl).into(profileImage);
+//                } else {
+//                    Picasso.get().load("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png").into(profileImage);
+//                }
+//                if (response.data().getUser().location() != null) {
+//                    location = response.data().getUser().location();
+//                    locationText.setText(location);
+//                } else {
+//                    String locationStr = "Location not specified";
+//                    locationText.setText(locationStr);
+//                }
             });
 
         }
